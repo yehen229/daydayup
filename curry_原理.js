@@ -15,7 +15,7 @@ function curry(func) {
     return function curriedFn(...args) {
         if (args.length < func.length) {
             return function () {
-                return curriedFn();
+                return curriedFn(...args.concat(Array.from(arguments)));
             }
         }
         return func(...args)
