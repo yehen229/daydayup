@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<!-- 
+      1. 先去请求接口 A
+      2. 在接口 A 获取到数据之后，再去请求接口 B
+      3. 在接口 B 获取到数据之后，再去请求接口 C
+      4. 在接口 C 获取到数据之后，再去请求接口 D
+ -->
+<script>
+  const isA = true
+  const isB = true
+  const isC = true
+  const isD = true
+  function A(cb) {
+    console.log('执行 A 接口的逻辑')
+    setTimeout(() => {
+      if (isA) {
+        cb('接口 A 执行完成');
+      } else {
+        cb('接口 A 执行失败');
+      }
+    }, 1 * 1000);
+  }
+  function B(cb) {
+    console.log('执行 B 接口的逻辑')
+    setTimeout(() => {
+      if (isB) {
+        cb('接口 B 执行完成');
+      } else {
+        cb('接口 B 执行失败');
+      }
+    }, 1 * 1000);
+  }
+  function C(cb) {
+    console.log('执行 C 接口的逻辑')
+    setTimeout(() => {
+      if (isC) {
+        cb('接口 C 执行完成');
+      } else {
+        cb('接口 C 执行失败');
+      }
+    }, 1 * 1000);
+  }
+  function D(cb) {
+    console.log('执行 D 接口的逻辑')
+    setTimeout(() => {
+      if (isD) {
+        cb('接口 D 执行完成');
+      } else {
+        cb('接口 D 执行失败');
+      }
+    }, 1 * 1000);
+  }
+
+
+  // 回调地狱 ：回调函数中大量嵌套导致出现 【复杂且难以阅读】 的逻辑
+  A(function (res) {
+    console.log(res);
+    B(function (res) {
+      console.log(res);
+      C(function (res) {
+        console.log(res);
+        D(function (res) {
+          console.log(res);
+        })
+      })
+    })
+  })
+
+
+
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,29 @@
+<!-- 声明式导航：跳转到 tabbar 页面 -->
+<navigator open-type="switchTab" url="/pages/index/index">声明式导航：跳转到 tabbar 页面</navigator>
+<!-- 编程式导航：跳转到 tabbar 页面  -->
+<button type="primary" bindtap="onSwitchToHome">编程式导航：跳转到 tabbar 页面</button>
+<scroll-view scroll-y class="list-box">
+    <block wx:for="{{ listData }}" wx:key="index">
+        <view class="list-item">
+            <!-- 声明式导航，navigator -->
+            <!-- 声明式导航：跳转到 非tabbar 页面 -->
+            <!-- url 的表达式必须以 / 开头 -->
+            <!-- <navigator url="/pages/detail/detail">{{index}} -- {{ item.title }}</navigator> -->
+
+            <!-- 导航传参： 
+                1. 以 `?` 分割 `url` 和参数
+                2. 以 `=` 连接参数的 `key` 和 `value`
+                3. 以 `&` 来拼接参数
+            -->
+            <navigator url="/pages/detail/detail?index={{index}}&title={{item.title}}">{{index}} -- {{ item.title }}</navigator>
+
+            <!-- 编程式导航：跳转到 非tabbar 页面  -->
+            <button type="primary" bindtap="onNavigateToDetail">编程式导航：跳转到 非tabbar 页面</button>
+            
+            
+        </view>
+        
+    </block>
+    <!-- 底线 -->
+    <view wx:if="{{ listData.length === total }}" class="bottom">-- 我也是有底线的！ --</view>
+</scroll-view>

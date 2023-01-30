@@ -1,0 +1,18 @@
+{
+  "name": "imooc-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/mudong.com/imooc-blog-code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dayjs": "^1.10.4"
+  }
+}

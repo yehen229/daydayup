@@ -1,0 +1,11 @@
+<!--pages/detail/detail.wxml-->
+<text>pages/detail/detail.wxml</text>
+
+<!-- 声明式导航：后退页面 -->
+<navigator open-type="navigateBack">声明式导航：后退页面</navigator>
+
+<!-- 编程式导航：后退页面  -->
+<button type="primary" bindtap="onNavigateBack">编程式导航：后退页面</button>
+
+<!-- 传递过来的参数 -->
+<view>{{index}} --- {{title}}</view>

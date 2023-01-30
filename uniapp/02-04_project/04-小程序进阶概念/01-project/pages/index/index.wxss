@@ -1,0 +1,6 @@
+/**index.wxss**/
+.list-slot {
+  text-align: center;
+  color: #aaaaaa;
+  padding: 18px 0;
+}

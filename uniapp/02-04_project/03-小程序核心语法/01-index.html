@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  // 创建一个商品的对象，price、num。 总价格：total
+  // 商品
+  let product = {
+    price: 10,
+    num: 5
+  }
+  // 总价格
+  let total = 0;
+  // 计算总价格的方法
+  function getTotal(product) {
+    return product.price * product.num
+  }
+  // 计算商品总价格
+  total = getTotal(product)
+  // 打印
+  console.log(`总价格：${total}`)
+  // 50 太贵了，所以我们少购买一些商品，num = 3
+  product.num = 3;
+  // 问：总价格是多少？ 30元？
+  console.log(`总价格：${total}`) // 此时，打印出来的总价格依然是 50 元。如果要说原因，【因为我们没有重新计算总价格】
+  // 但是，此时大家有没有想过一点？我们为什么要进行价格的重新计算呢？
+  // ------------------------------
+  // 当商品的数量发生变化时，商品的总价格【理应发生变化】，不是吗？
+
+
+</script>
+
+</html>

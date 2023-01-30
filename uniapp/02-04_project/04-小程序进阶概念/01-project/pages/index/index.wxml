@@ -1,0 +1,12 @@
+<view>
+<!-- 监听子组件的 change 事件 -->
+    <tabs bind:change="onTabChange"></tabs>
+    <list tabId="{{ tabSelectId }}">
+        <view slot="header" class="list-slot">
+            我是列表的头部
+        </view>
+        <view slot="footer" class="list-slot">
+            我是列表的底部
+        </view>
+    </list>
+</view>

@@ -1,0 +1,20 @@
+/* components/tabs/tabs.wxss */
+.tabs-box {
+    width: 750rpx;
+    white-space: nowrap;
+    border-bottom: 1px solid #cccccc;
+    /* 想要让 tab 固定到顶部 */
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    background-color: white;
+}
+
+.tab {
+    display: inline-block;
+    padding: 12px 22px;
+}
+
+.active {
+    color: #f94d2a;
+}

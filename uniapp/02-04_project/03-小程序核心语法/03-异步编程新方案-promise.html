@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<!-- 
+      1. 先去请求接口 A
+      2. 在接口 A 获取到数据之后，再去请求接口 B
+      3. 在接口 B 获取到数据之后，再去请求接口 C
+      4. 在接口 C 获取到数据之后，再去请求接口 D
+ -->
+<!-- 
+   Promise 是一个构造函数，所以我们可以通过 new 关键字来构建 promise 的实例
+   Promise 的状态：
+   1. 待定（pending）: 初始状态，既没有被兑现，也没有被拒绝。
+   2. 已兑现（fulfilled）: 意味着操作成功完成。
+   3. 已拒绝（rejected）: 意味着操作失败。
+
+  -->
+<script>
+  const isA = true
+  const isB = true
+  const isC = true
+  const isD = true
+  function A() {
+    // 1. 创建 Promise 实例
+    // 2. 构造函数中接收一个回调函数
+    // 3. resolve：是一个回调函数，表示 Promise 执行成功
+    // 4. reject：是一个回调函数，表示 Promise 执行失败
+    return new Promise((resolve, reject) => {
+      // 5. 处于 待定（pending） 下，代码会立刻执行
+      console.log('执行接口 A 的逻辑');
+      setTimeout(() => {
+        if (isA) {
+          // 执行成功 -> 已兑现（fulfilled）
+          resolve('接口 A 执行完成')
+        } else {
+          // 执行失败 -> 已拒绝（rejected）
+          reject('接口 A 执行失败')
+        }
+      }, 1 * 1000);
+    })
+  }
+  function B() {
+    return new Promise((resolve, reject) => {
+      console.log('执行接口 B 的逻辑');
+      setTimeout(() => {
+        if (isB) {
+          resolve('接口 B 执行完成')
+        } else {
+          reject('接口 B 执行失败')
+        }
+      }, 1 * 1000);
+    })
+  }
+  function C() {
+    return new Promise((resolve, reject) => {
+      console.log('执行接口 C 的逻辑');
+      setTimeout(() => {
+        if (isC) {
+          resolve('接口 C 执行完成')
+        } else {
+          reject('接口 C 执行失败')
+        }
+      }, 1 * 1000);
+    })
+  }
+  function D() {
+    return new Promise((resolve, reject) => {
+      console.log('执行接口 D 的逻辑');
+      setTimeout(() => {
+        if (isD) {
+          resolve('接口 D 执行完成')
+        } else {
+          reject('接口 D 执行失败')
+        }
+      }, 1 * 1000);
+    })
+  }
+
+
+  // 使用 promise 的实例呢？
+  // promise 的实例
+  // .then：接收【已兑现（fulfilled）】的结果
+  // .catch：接收【已拒绝（rejected）】的结果
+  // 在 .then 中，可以继续 return 一个 promise 的实例，这个 return 的实例，可以在 下一次的 .then 中接收结果
+  // 链式调用
+  A()
+    .then(res => {
+      console.log(res);
+      return B()
+    })
+    .then(res => {
+      console.log(res);
+      return C()
+    })
+    .then(res => {
+      console.log(res);
+      return D()
+    })
+    .then(res => {
+      console.log(res);
+    })
+</script>
+
+</html>

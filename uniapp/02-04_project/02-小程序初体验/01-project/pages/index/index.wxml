@@ -1,0 +1,63 @@
+<!--index.wxml-->
+<view class="container">
+  <div>我是一个 div 标签</div>
+  <h1>我是一个 h1 标签</h1>
+</view>
+
+<view class="test-01-parent" hover-class="test-hover-01">
+  <view class="test-01" hover-class="test-hover-01" hover-stop-propagation="true">我是 view 组件</view>
+</view>
+
+<!-- scrollView 可以理解为：添加了 overflow:scroll 属性的 div -->
+<!-- 
+  竖向滚动：
+    1. scroll-view 拥有固定的高度
+    2. scroll-view 内容的高度超出本身的高度
+    3. 给 scroll-view 添加了 scroll-y 的属性
+  横向滚动：
+    1. scroll-view 拥有固定的高度
+    2. scroll-view 内容的高度超出本身的高度
+    3. 给 scroll-view 添加了 scroll-x 的属性
+ -->
+<scroll-view class="test-scroll-view" scroll-x>
+  <view class="scroll-view-child scroll-view-child-01">a</view>
+  <view class="scroll-view-child scroll-view-child-02">b</view>
+  <view class="scroll-view-child scroll-view-child-03">c</view>
+</scroll-view>
+
+<!-- 
+  swiper: 滑动视图容器，内部只可以放置 swiper-item
+ -->
+<swiper indicator-dots indicator-active-color="#ffffff" autoplay>
+  <swiper-item class="scroll-view-child-01">A</swiper-item>
+  <swiper-item class="scroll-view-child-02">B</swiper-item>
+  <swiper-item class="scroll-view-child-03">C</swiper-item>
+</swiper>
+
+<!-- 
+  view VS test 
+  div VS span
+  span 标签
+ -->
+<text>test-01</text>
+<text>test-02</text>
+<text>test-03</text>
+
+<view>test-04</view>
+<view>test-05</view>
+<view>test-06</view>
+
+<!-- rich-text：富文本组件 -->
+<rich-text nodes='<section class="header-menu fixed"><ul><li class="menu-row"><a href="//m.imooc.com" class="cur">首页</a><a href="//m.imooc.com/course/list">免费课</a><a href="//coding.m.imooc.com">实战课</a><a href="//class.m.imooc.com"><span class="imwap-tixike"></span> 体系课</a></li><li class="menu-row"><a href="//m.imooc.com/live">直播</a><a href="//m.imooc.com/read">专栏</a><a href="//m.imooc.com/article">手记</a><a href="//m.imooc.com/wiki">慕课教程</a> </li></ul></section>'></rich-text>
+
+<!-- 
+  button: open-type 微信的开放能力（后面的学习过程中会讲解到）
+ -->
+<button type="primary" plain="true">我是一个 button</button>
+
+<!-- image -> img -->
+<image src="https://t7.baidu.com/it/u=993577982,1027868784&fm=193&f=GIF"></image>
+
+<image src="https://t7.baidu.com/it/u=993577982,1027868784&fm=193&f=GIF" mode="aspectFit"></image>
+
+<image src="https://t7.baidu.com/it/u=993577982,1027868784&fm=193&f=GIF" mode="aspectFill"></image>

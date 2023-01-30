@@ -1,0 +1,93 @@
+{
+  "pages": [
+    {
+      "path": "pages/hot/hot",
+      "style": {
+        "navigationBarTitleText": "热搜",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/hot-video/hot-video",
+      "style": {
+        "navigationBarTitleText": "热播",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "enablePullDownRefresh": false
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "app-plus": {
+      "background": "#efeff4"
+    }
+  },
+  "tabBar": {
+    "selectedColor": "#f94d2a",
+    "list": [
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "热榜",
+        "iconPath": "static/tab-icons/hot.png",
+        "selectedIconPath": "static/tab-icons/hot-active.png"
+      },
+      {
+        "pagePath": "pages/hot-video/hot-video",
+        "text": "热播",
+        "iconPath": "static/tab-icons/hot-video.png",
+        "selectedIconPath": "static/tab-icons/hot-video-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tab-icons/my.png",
+        "selectedIconPath": "static/tab-icons/my-active.png"
+      }
+    ]
+  },
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "name": "sub-1",
+      "pages": [
+        {
+          "path": "pages/search-blog/search-blog",
+          "style": {
+            "navigationBarTitleText": "慕课搜索",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/blog-detail/blog-detail",
+          "style": {
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/login-page/login-page",
+          "style": {
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "pages/video-detail/video-detail",
+          "style": {
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    }
+  ]
+}

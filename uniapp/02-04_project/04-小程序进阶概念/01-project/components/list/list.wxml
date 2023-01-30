@@ -1,0 +1,14 @@
+<!-- list 组件的头部和尾部将来会展示一块内容，但是这块内容具体展示什么，在不同的页面中会不一样！ -->
+
+<!-- 单一插槽 -->
+<!-- <view>---------</view>
+<slot></slot>
+<view>---------</view> -->
+<!-- 定义多个插槽 -->
+<slot name="header"></slot>
+<scroll-view scroll-y>
+    <view wx:for="{{ listData }}" wx:key="index" class="list-item">
+        {{ item.title }}
+    </view>
+</scroll-view>
+<slot name="footer"></slot>

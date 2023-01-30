@@ -1,0 +1,121 @@
+<view>
+    <!-- 在 wxml 中如果要访问数据（data 定义），必须要使用 {{}}，{{}} 语法中可以放置【任意的、单一的 JavaScript 表达式】 -->
+    <view>
+        商品的单价：{{ product.price }}
+    </view>
+    <view>
+        商品的数量：{{ product.num }}
+    </view>
+    <view>
+        商品的总价格：{{ product.price * product.num }}
+    </view>
+    <!-- 现在商品还没有发生变化呀？我也没有看到对应的视图的变化呀？ -->
+    <!-- 
+        1. 创建一个按钮
+        2. 监听按钮的点击事件
+        3. 让 product.num + 1
+     -->
+     <!-- 
+         小程序中点击事件不是 click 而是 tap，监听 tap 事件需要用到 bind 
+            1. bindtap(推荐)
+            2. bind:tap
+    -->
+     <button type="primary" bindtap="onAddNum">num + 1</button>
+     <!-- 
+         我们希望 onAddNum 接收参数，每次点击 num 时，增加传入的参数的数量
+      -->
+      <!-- 先尝试暂停视频，去读 小程序的 文档（5 分钟），看一下是否可以获取到对应的答案 -->
+      <!-- 
+          为 点击事件传递参数：
+            1. event 对象：形参
+                1.1: 通过  e.target.dataset 访问 传递的实参
+            2. data- 属性：实参
+                2.1 小程序中 不能直接为回调方法传递实参
+                2.2：属性绑定的形式，把需要传递的参数绑定到当前 DOM 元素的 data-xx 属性下
+       -->
+      <button type="primary" bindtap="onAddNumN" data-step="5">num + N</button>
+      <!-- 
+          创建一个 输入框，在输入框中输入数字，【输入框】与【商品数量】完成【双向绑定】
+          即：
+            1. 输入框内容（视图）发生变化时，商品数量（数据）同步发生变化
+            2. 商品数量（数据）发生变化时，输入框内容（视图）跟随发生变化
+       -->
+       <!-- 如何把这个功能拆解为可执行的步骤呢？ -->
+       <!-- 
+           1. 创建一个【数字输入框】
+           2. 设置【商品数量】为输入框的初始值
+           3. 监听用户的输入行为
+           4. 获取用户输入的值
+           5. 赋值给【商品数量】
+        -->
+        <view>
+            商品的数量：
+            <!-- 执行 type = number ，那么会弹出 数字输入的软键盘 -->
+            <!-- 1. 创建一个【数字输入框】 -->
+            <!-- 2. 设置【商品数量】为输入框的初始值 -->
+            <!-- 3. 监听用户的输入行为 -->
+            <input class="num-input" type="number" value="{{ product.num }}" bindinput="onInput" />
+        </view>
+        <!-- 
+            售货员小姐姐对你发出一声惊呼：
+                1. 如果【总价格 <= 100】：hello 帅哥
+                2. 如果【总价格 > 100 && 总价格 < 1000】: 哇哦  有钱人哦
+                3. 如果【总价格 >= 1000】：土豪 你好
+         -->
+         <!-- 
+            条件渲染：
+                1. wx:if ... wx:elif ... wx:else 
+                2. hidden（针对当前业务，使用 hidden 是更好的选择）
+          -->
+          <!-- 1. wx:if ... wx:elif ... wx:else：判断结果 true 则进行渲染，否则不进行渲染 -->
+          <view>
+            售货员小姐姐对你发出一声惊呼：
+            <text wx:if="{{ product.price * product.num <=100 }}">hello 帅哥</text>
+            <text wx:elif="{{ product.price * product.num > 100 &&  product.price * product.num < 1000}}">哇哦  有钱人哦</text>
+            <text wx:else>土豪 你好</text>
+          </view>
+          <!-- 2. hidden: 结果为 true 则【隐藏】，否则【不隐藏】 -->
+          <view>
+            售货员小姐姐对你发出一声惊呼：
+            <text hidden="{{ !(product.price * product.num <=100) }}">hello 帅哥</text>
+            <text hidden="{{ !(product.price * product.num > 100 &&  product.price * product.num < 1000) }}">哇哦  有钱人哦</text>
+            <text hidden="{{ product.price * product.num < 1000 }}">土豪 你好</text>
+          </view>
+          <!-- 
+              wx:if VS hidden:
+                1. 当 wx:if 条件满足则 进行渲染，否则 不渲染
+                2. 当 hidden 条件满足 则 隐藏，否则 不隐藏
+              我们应该在什么情况下 使用 wx:if ，使用 hidden 呢？
+              一般来说， wx:if 有更高的切换消耗，而 hidden 有更高的初始渲染消耗。
+              因此，如果需要频繁切换的情境下，用 hidden 是更好的。
+              如果在运行时条件不大可能改变，用 wx:if 是更好的。
+           -->
+
+
+           <!-- 
+               现在我们有一组商品，并且希望把这组商品全部渲染出来，此时就需要使用到【列表渲染】
+            -->
+            <!-- 
+                列表渲染：wx:for
+                wx:for="{{ 要循环的列表 }}"
+                默认的当前项和下标名称：
+                默认的当前项为：item
+                默认的下标名为：index
+             -->
+             <view class="product-box">
+                <!-- block 组件：包裹性值的容器，不会进行渲染 -->
+                <!-- 
+                    wx:for 它必须要配合 wx:key 进行使用，wx:key 可以提高 for 循环的性能。 
+                    对应的 key 值必须是一个不可以重复的值
+                    注意：使用 index 作为 wx:key 的表达式是不需要使用 {{}}
+                 -->
+                <block wx:for="{{ products }}" wx:key="index">
+                    <view class="product-item">
+                        <text>索引：{{ index }} -- </text>
+                        <text>商品名：{{ item.name }} -- </text>
+                        <text>价格：{{ item.price }}</text>
+                    </view>
+                </block>
+             </view>
+             
+</view>
